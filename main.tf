@@ -1,19 +1,39 @@
 provider "aws" {
-  region  = "us-east-1"
+  region  = "ap-southeast-1"
   version = "~>2.70"
 }
 
-variable "im_user_name_prefix" {
-    type = string
-    default = "my_iam_users"
-}
+// Security Group
+// Allow access to these rules:
+// HTTP Server -> 80 TCP, 22 TCP (SSH), CIDR (specify a range of address) ["0.0.0.0/0"]
+resource "aws_security_group" "http_server_sg" {
+  name   = "http_server_sg"
+  vpc_id =  "vpc-acf5dccb"
 
-variable "names" {
-    default = [ "john", "mary", "james" ]
-}
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-resource "aws_iam_user" "my_iam_users" {
-  count = length(var.names)
-  #name  = "${var.im_user_name_prefix}_${count.index}"
-  name = var.names[count.index]
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+
+  tags = {
+    name = "http_server_sg"
+  }
+
 }
