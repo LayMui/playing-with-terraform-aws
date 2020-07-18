@@ -1,11 +1,9 @@
 # playing-with-terraform-aws
 
-terraform console
-> aws_instance.http_server.public_dns
-ec2-54-169-225-46.ap-southeast-1.compute.amazonaws.com
+Automating load balancers using terraform
+>terraform apply
+"dns_name" = "elb-2095039918.ap-southeast-1.elb.amazonaws.com"
 
-copy ec2-54-169-225-46.ap-southeast-1.compute.amazonaws.com to the browser 
-which will display 
-```
-Hello World - Virtual Server ec2-54-169-225-46.ap-southeast-1.compute.amazonaws.com
-```
+copy and paste elb-2095039918.ap-southeast-1.elb.amazonaws.com to the browser
+
+>terraform destroy
