@@ -1,16 +1,11 @@
-output "laymui-s3-bucket_versioning" {
-    value = aws_s3_bucket.laymui-s3-bucket.versioning[0].enabled
+output "aws_security_group_details" {
+  value = aws_security_group.http_server_sg
 }
 
-output "laymui-s3-bucket_complete_details" {
-    value = aws_s3_bucket.laymui-s3-bucket
+output "aws_instance_details" {
+  value = aws_instance.http_server
 }
 
-# create a IAM user
-resource "aws_iam_user" "my_iam_user" {
-    name = "my_iam_user_AAA"
-}
-
-output "my_iam_user_complete_details" {
-value = aws_iam_user.my_iam_user
+output "http_server_public_dns" {
+  value = aws_instance.http_server.public_dns
 }
