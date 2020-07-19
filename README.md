@@ -1,3 +1,12 @@
 # playing-with-terraform-aws
 
-some basic syntax and command to create resources on AWS
+Using terraform modules
+to write re-usable, maintainable terraform code.
+
+cd dev/users
+terraform apply
+terraform destroy
+
+cd qa/users
+terraform apply
+terraform destroy
